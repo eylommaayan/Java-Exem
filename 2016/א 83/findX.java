@@ -5,32 +5,35 @@
 
  * 
  */
+public static boolean findX(int[] a, int x) {
+    // הגדרת משתנים עבור גבול תחתון (low), גבול עליון (high) ואינדקס אמצע (mid)
+    int low = 0, high = a.length - 1, mid = 0;
 
- public class Main {
-    public static void main(String[] args) {
-        int[] a = {1, 2, 5, 3, 6, 10, 9};
-        int x = 10;
-        System.out.println(findX(a, x));
-    }
-
-    public static boolean findX(int[] a, int x) {
-        int low = 0, high = a.length - 1, mid = 0;
-        if (a.length == 1) {
-            return false;
-        }
-        while (low < high) {
-            mid = (low + high) / 2;
-            if (a[mid] + a[mid + 1] == x) {
-                return true;
-            }
-            if (a[mid] + a[mid + 1] < x) {
-                low = mid + 1;
-            } else {
-                high = mid;
-            }
-        }
+    // אם אורך המערך הוא 1, אין אפשרות למצוא שני איברים סמוכים, לכן מחזירים false
+    if (a.length == 1) {
         return false;
     }
+
+    // לולאת חיפוש בינארי
+    while (low < high) {
+        // חישוב אינדקס האמצע
+        mid = (low + high) / 2;
+
+        // בדיקה אם סכום האיברים באינדקסים mid ו-mid+1 שווה ל-x
+        if (a[mid] + a[mid + 1] == x) {
+            return true; // מצאנו זוג איברים שסכומם שווה ל-x, מחזירים true
+        }
+
+        // אם סכום האיברים קטן מ-x, מעדכנים את הגבול התחתון
+        if (a[mid] + a[mid + 1] < x) {
+            low = mid + 1; // מעדכנים את הגבול התחתון כך שיתחיל מהאינדקס הבא
+        } else {
+            high = mid; // מעדכנים את הגבול העליון לאמצע הנוכחי
+        }
+    }
+
+    // אם לא נמצא זוג איברים שסכומם שווה ל-x, מחזירים false
+    return false;
 }
 
 
