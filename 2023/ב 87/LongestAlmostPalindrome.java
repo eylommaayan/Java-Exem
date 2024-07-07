@@ -85,3 +85,6 @@ public class LongestAlmostPalindrome {
         System.out.println(longestAlmostPalindrome(arr));
     }
 }
+
+
+
