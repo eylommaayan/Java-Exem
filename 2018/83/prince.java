@@ -34,7 +34,7 @@ private static int prince(int[][] drm, int i, int j, int prev) {
  // בשביל מסלול הכי קטן
 private int priceMin(int a, int b, int c, int d){
 if(a == -1 && b== -1 && c == -1 && d == -1){
-  return -1;
+  return -2;
   int best = Math.max(Math.min(a,b), Math.min(c,d));
     if(a >= 0)
       best = Math.min(best, a);
