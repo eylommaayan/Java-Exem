@@ -4,27 +4,23 @@ public class countPairs {
     
 
     public static int countPairs(int n) {
-        return countPairs(n, n, ""); // קריאה לפונקציה הרקורסיבית עם n זוגות סוגריים ו-toPrint התחלתי ריק
+        return countPairs(n, "", 0, 0);
     }
-
-    private static int countPairs(int left, int right, String toPrint) {
-        // אנחנו עוצרים כשלא ניתן לשים עוד סוגריים ימניים - כשכל הסוגריים הימניים נוצלו.
-        if (right == 0) {
-            System.out.println(toPrint); // מדפיסים את הביטוי התקני שמצאנו
-            return 1; // מצאנו ביטוי תקני נוסף
+    
+    public static int countPairs(int n, String expression, int open, int close) {
+        // אם מספר הסוגרים הפתוחים או הסוגרים גדול מ-n, השיטה מחזירה 0
+        if (open > n || close > open) return 0;
+    
+        // אם מספר הסוגרים הסגורים שווה ל-n, מדפיסים את הביטוי ומחזירים 1
+        if (close == n) {
+            System.out.println(expression);
+            return 1;
         }
     
-        int count = 0; // משתנה לספירת הביטויים התקניים שמצאנו
-    
-        // הוספת סוגר שמאלי
-        if (left > 0)
-            count += countPairs(left - 1, right, toPrint + "("); // קריאה רקורסיבית לאחר הוספת סוגר שמאלי
-    
-        // הוספת סוגר ימני
-        if (left < right)
-            count += countPairs(left, right - 1, toPrint + ")"); // קריאה רקורסיבית לאחר הוספת סוגר ימני
-    
-        return count; // החזרת מספר הביטויים התקניים שמצאנו
+        // קריאה רקורסיבית להוספת סוגר פתוח או סגור לביטוי
+        return countPairs(n, expression + "(", open + 1, close)
+            + countPairs(n, expression + ")", open, close + 1);
     }
+    
     
 }
