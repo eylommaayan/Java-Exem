@@ -1,3 +1,6 @@
+public class findSmallestSubarrayLen1 {
+   
+
 public static int findSmallestSubarrayLen(int[] arr, int num) {
     // Initialize variables: minLength to store the smallest length found,
     // currentSum to store the sum of the current window, and start to mark the beginning of the window
@@ -36,4 +39,6 @@ public static int findSmallestSubarrayLen(int[] arr, int num) {
         System.out.println("Smallest Subarray found " + smallestSubarray);
         return minLength;
     }
+}
+
 }
