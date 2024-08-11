@@ -1,25 +1,26 @@
 public class meetingPint {
 
-
+    // פונקציה למציאת נקודת המפגש בין שני מערכים
     public static int meetingPoint(int[] a, int[] b) {
-        int low = 0, 
-        mid = 0, 
-        minIndex = -1;
-        int high = Math.min(a.length - 1, b.length - 1);
-        
+        int low = 0, // משתנה המייצג את תחילת החיפוש
+        mid = 0, // משתנה המייצג את האינדקס האמצעי בחיפוש
+        minIndex = -1; // משתנה המייצג את נקודת המפגש שנמצאה, אם לא תמצא יחזור -1
+        int high = Math.min(a.length - 1, b.length - 1); // משתנה המייצג את סוף החיפוש (האינדקס המקסימלי)
+
+        // לולאת while שמבצעת חיפוש בינארי במערכים
         while (low <= high) {
-            mid = (low + high) / 2;
-            if (a[mid] == b[mid]) {
-                minIndex = mid;
-                high = mid - 1;
-            } else if (a[mid] > b[mid]) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
+            mid = (low + high) / 2; // חישוב האינדקס האמצעי
+            if (a[mid] == b[mid]) { // אם נמצא ערך זהה בשני המערכים באותו אינדקס
+                minIndex = mid; // נשמור את האינדקס שבו נמצא ערך זהה
+                high = mid - 1; // נמשיך לחפש בחצי השמאלי של המערך (חיפוש אחרי ערך זהה נמוך יותר)
+            } else if (a[mid] > b[mid]) { // אם הערך במערך הראשון גדול מהערך במערך השני
+                low = mid + 1; // נמשיך לחפש בחצי הימני של המערך
+            } else { // אם הערך במערך השני גדול מהערך במערך הראשון
+                high = mid - 1; // נמשיך לחפש בחצי השמאלי של המערך
             }
         }
         
-        return minIndex;
+        return minIndex; // נחזיר את האינדקס שבו נמצא ערך זהה או -1 אם לא נמצא ערך כזה
     }
     
 }
